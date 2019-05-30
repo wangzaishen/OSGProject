@@ -1,33 +1,202 @@
-Geode {
+Group {
   nodeMask 0xffffffff
   cullingActive TRUE
-  num_drawables 1
-  Geometry {
-    useDisplayList TRUE
-    useVertexBufferObjects FALSE
-    PrimitiveSets 1
-    {
-      DrawArrays QUADS 0 4
+  StateSet {
+    rendering_hint DEFAULT_BIN
+    renderBinMode INHERIT
+    GL_LIGHTING PROTECTED|OFF
+  }
+  num_children 5
+  MatrixTransform {
+    nodeMask 0xffffffff
+    cullingActive TRUE
+    StateSet {
+      rendering_hint DEFAULT_BIN
+      renderBinMode INHERIT
+      GL_LIGHTING ON
+      GL_LIGHT0 ON
+      GL_RESCALE_NORMAL ON
+      Material {
+        ColorMode OFF
+        ambientColor 0.2 0.2 0.2 1
+        diffuseColor FRONT 0.2 0.9 0.9 1
+        diffuseColor BACK  0.8 0.8 0.8 1
+        specularColor FRONT 1 1 1 1
+        specularColor BACK  0 0 0 1
+        emissionColor 0 0 0 1
+        shininess FRONT 96
+        shininess BACK  0
+      }
     }
-    VertexArray Vec3Array 4
-    {
-      -1 0 -1
-      1 0 -1
-      -1 0 1
-      -1 0 1
+    referenceFrame RELATIVE
+    Matrix {
+      1 0 0 0
+      0 1 0 0
+      0 0 1 0
+      -2 0 2 1
     }
-    NormalBinding OVERALL
-    NormalArray Vec3Array 1
-    {
-      0 -1 0
+    num_children 1
+    Geode {
+      UniqueID Geode_0
+      nodeMask 0xffffffff
+      cullingActive TRUE
+      num_drawables 2
+      ShapeDrawable {
+        Cylinder {
+          Center 0.5 0.5 0
+          Radius 0.5
+          Height 1.1
+          Rotation 0 0 0 1
+        }
+        useDisplayList TRUE
+        useVertexBufferObjects FALSE
+        color 1 1 0 1
+      }
+      osgText::Text {
+        StateSet {
+          UniqueID StateSet_1
+          rendering_hint TRANSPARENT_BIN
+          renderBinMode USE
+          binNumber 10
+          binName DepthSortedBin
+        }
+        supportsDisplayList FALSE
+        useDisplayList FALSE
+        useVertexBufferObjects FALSE
+        color 0 0 1 1
+        font cir.ttf
+        fontResolution 128 128
+        characterSize 5 1
+        characterSizeMode SCREEN_COORDS
+        alignment CENTER_TOP
+        autoRotateToScreen TRUE
+        layout LEFT_TO_RIGHT
+        position 0 0 0
+        drawMode 1
+        BoundingBoxMargin 0
+        BoundingBoxColor 0 0 0 0.5
+        text "Display this message"
+        backdropType NONE
+        backdropHorizontalOffset 0.07
+        backdropVerticalOffset 0.07
+        backdropColor 0 0 0 1
+        backdropImplementation 
+        colorGradientMode SOLID
+        colorGradientTopLeft 1 0 0 1
+        colorGradientBottomLeft 0 1 0 1
+        colorGradientBottomRight 0 0 1 1
+        colorGradientTopRight 1 1 1 1
+      }
     }
-    ColorBinding PER_VERTEX
-    ColorArray Vec4Array 4
-    {
-      1 0 0 1
-      0 1 0 1
-      0 0 1 1
-      1 1 1 1
+  }
+  MatrixTransform {
+    nodeMask 0xffffffff
+    cullingActive TRUE
+    referenceFrame RELATIVE
+    Matrix {
+      1 0 0 0
+      0 1 0 0
+      0 0 1 0
+      -3 2 5 1
     }
+    num_children 1
+    LightSource {
+      nodeMask 0xffffffff
+      cullingActive FALSE
+      StateSet {
+        rendering_hint DEFAULT_BIN
+        renderBinMode INHERIT
+        GL_LIGHT2 ON
+      }
+      referenceFrame RELATIVE
+      Light {
+        light_num 2
+        ambient 0.5 0.5 0.5 0.5
+        diffuse 0.8 0.8 0.8 1
+        specular 0.8 0.8 0.8 1
+        position 0 0 0 0
+        direction 1 1 1
+        constant_attenuation 1
+        linear_attenuation 0
+        quadratic_attenuation 0
+        spot_exponent 0
+        spot_cutoff 25
+      }
+    }
+  }
+  MatrixTransform {
+    nodeMask 0xffffffff
+    cullingActive TRUE
+    StateSet {
+      rendering_hint DEFAULT_BIN
+      renderBinMode INHERIT
+      GL_LIGHTING ON
+      GL_LIGHT0 ON
+      GL_RESCALE_NORMAL ON
+      Material {
+        ColorMode AMBIENT_AND_DIFFUSE
+        ambientColor 0.2 0.2 0.2 1
+        diffuseColor 0.8 0.8 0.8 1
+        specularColor 0 0 0 1
+        emissionColor 0 0 0 1
+        shininess 0
+      }
+      ShadeModel {
+        mode FLAT
+      }
+    }
+    referenceFrame RELATIVE
+    Matrix {
+      1 0 0 0
+      0 1 0 0
+      0 0 1 0
+      2 0 2 1
+    }
+    num_children 1
+    Use Geode_0
+  }
+  MatrixTransform {
+    nodeMask 0xffffffff
+    cullingActive TRUE
+    StateSet {
+      rendering_hint DEFAULT_BIN
+      renderBinMode INHERIT
+      GL_CULL_FACE ON
+      CullFace {
+        mode BACK
+      }
+    }
+    referenceFrame RELATIVE
+    Matrix {
+      1 0 0 0
+      0 1 0 0
+      0 0 1 0
+      -2 0 -2 1
+    }
+    num_children 1
+    Use Geode_0
+  }
+  MatrixTransform {
+    nodeMask 0xffffffff
+    cullingActive TRUE
+    StateSet {
+      rendering_hint DEFAULT_BIN
+      renderBinMode INHERIT
+      PolygonMode {
+        mode FRONT_AND_BACK LINE
+      }
+      LineWidth {
+        width 3
+      }
+    }
+    referenceFrame RELATIVE
+    Matrix {
+      1 0 0 0
+      0 1 0 0
+      0 0 1 0
+      2 0 -2 1
+    }
+    num_children 1
+    Use Geode_0
   }
 }
